@@ -1,0 +1,71 @@
+<html>
+
+<head>
+	<title>Freescale events contact tool</title>
+	<meta name="viewport" content="width=device-width; initial-scale=1.0">
+</head>
+
+<body>
+	<center>
+		<br>
+		<img src="freescale-logo.png">
+		<br>
+		<p>Thank you for your interest in Freescale.</p>
+		<p>For us to contact you, please enter your name, last name, and an email.</p>
+		<input placeholder="Name" id="name"></input>
+		<br><br>
+		<input placeholder="Last name" id="lastname"></input>
+		<br><br>
+		<input placeholder="me@email.com" id="email"></input>
+		<br><br>
+		<button onclick="go();">Submit</button>
+		<button onclick="end();">Finish event</button>
+		<br><br>
+	</center>
+</body>
+
+<script>
+	var nameForm = document.getElementById("name");
+	var lastnameForm = document.getElementById("lastname");
+	var emailForm = document.getElementById("email");
+	
+	var eventn = window.location.href;
+	eventn = eventn.substring(eventn.indexOf("&")+1);
+	
+	var coreid = window.location.href;
+	coreid = coreid.substring(coreid.indexOf("?")+1,coreid.indexOf("&"));
+
+	function go(){
+		var urlreq = "http://1-dot-appfsl-1028.appspot.com/app?";
+		urlreq += "event="+eventn+"&";
+		urlreq += "name="+nameForm.value+"&";
+		urlreq += "lastname="+lastnameForm.value+"&";
+		urlreq += "email="+emailForm.value;
+	
+		var xmlHttp = new XMLHttpRequest();
+		xmlHttp.open( "GET", urlreq, false );
+		xmlHttp.send( null );
+		
+		alert("Your information has been sent to our servers");
+		
+		nameForm.value = "";
+		lastnameForm.value = "";
+		emailForm.value = "";
+	}
+	
+	function end() {
+		var urlreq = "http://1-dot-appfsl-1028.appspot.com/app?";
+		urlreq += "event="+eventn+"&";
+		urlreq += "action=finish";
+		
+		var xmlHttp = new XMLHttpRequest();
+		xmlHttp.open( "GET", urlreq, false );
+		xmlHttp.send( null );
+		
+		alert("Sending email summary. You will be redirected to the main page.");
+		
+		window.location.href = "http://1-dot-appfsl-1028.appspot.com/";
+	}
+</script>
+
+</html>

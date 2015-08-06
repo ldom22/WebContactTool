@@ -1,0 +1,31 @@
+<html>
+
+<head>
+	<title>Freescale events contact tool</title>
+	<meta name="viewport" content="width=device-width; initial-scale=1.0">
+</head>
+
+<body>
+	<center>
+		<br>
+		<img src="freescale-logo.png">
+		<br>
+		<p id="text"><p>
+		<p>When you are done click "Finish event" you will get an email with all names and emails.</p>
+		<button onclick="start();">Start</button>
+	</center>
+</body>
+
+<script>
+	var event = window.location.href;
+	event = event.substring(event.indexOf("&")+1);
+	var args = window.location.href;
+	args = args.substring(args.indexOf("?"));
+	document.getElementById("text").innerHTML = "Created event <b>"+event+"</b>. Click start to begin."
+	
+	function start(){
+		window.location.href = "gather.html"+args;
+	}
+</script>
+
+</html>

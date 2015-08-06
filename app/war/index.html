@@ -1,0 +1,40 @@
+<html>
+
+<head>
+	<title>Freescale events contact tool</title>
+	<meta name="viewport" content="width=device-width; initial-scale=1.0">
+</head>
+
+<body>
+	<center>
+		<br>
+		<img src="freescale-logo.png">
+		<br>
+		<p>Welcome to the Freescale event contact gathering tool.</p>
+		<p>Please enter your <b>core id</b> and a name for your <b>event</b>.</p>
+		<input placeholder="Core id" id="coreid"></input>
+		<br><br>
+		<input placeholder="Name of event" id="event"></input>
+		<br><br>
+		<button onclick="go();">Create</button>
+	</center>
+</body>
+
+<script>
+	function go(){
+		var coreid = document.getElementById("coreid").value;
+		var event = document.getElementById("event").value;
+		
+		var urlreq = "http://1-dot-appfsl-1028.appspot.com/app?";
+		urlreq += "event="+event+"&";
+		urlreq += "fsl="+coreid;
+		
+		var xmlHttp = new XMLHttpRequest();
+		xmlHttp.open( "GET", urlreq, false );
+		xmlHttp.send( null );
+		
+		window.location.href = "intro.html?"+coreid+"&"+event;
+	}
+</script>
+
+</html>
